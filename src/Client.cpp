@@ -382,9 +382,9 @@ void Client::write_UDP_FIN( ) {
         // wait until the socket is readable, or our timeout expires 
         FD_ZERO( &readSet ); 
         FD_SET( mSettings->mSock, &readSet ); 
-        timeout.tv_sec  = 0; 
-		//      timeout.tv_usec = 250000; // quarter second, 250 ms
-		timeout.tv_usec = 2500000; // 2.5 sec, 2500 ms--by CalSPEED
+        timeout.tv_sec  = 2; 
+	//      timeout.tv_usec = 250000; // quarter second, 250 ms
+	timeout.tv_usec = 500; // half second, 500 ms    /* microseconds */ by CalSPEED
 
         rc = select( mSettings->mSock+1, &readSet, NULL, NULL, &timeout ); 
         FAIL_errno( rc == SOCKET_ERROR, "select", mSettings ); 
